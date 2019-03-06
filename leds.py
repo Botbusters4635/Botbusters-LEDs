@@ -1,193 +1,121 @@
-# CircuitPython demo - Dotstar
 import time
 import adafruit_dotstar
 import board
 import math
+import numpy as np
+
 from networktables import NetworkTables
 
+
+class RunningLedsConfig:
+    __slots__ = ["amountRunning", "baseColor", "runningColor", "fill", "increaseStep"]
+
+    def __init__(self, amountRunning, baseColor, runningColor, fill, increaseStep):
+        self.amountRunning = amountRunning
+        self.baseColor = baseColor
+        self.runningColor = runningColor
+        self.fill = fill
+        self.increaseStep = increaseStep
+
+
+class BreatheConfig:
+    __slots__ = ["color", "increaseStep"]
+
+    def __init__(self, color, increaseStep):
+        self.color = color
+        self.increaseStep = increaseStep
+
+
+def runningLeds(runningConfig):
+    global state
+    state = state + runningConfig.increaseStep
+    if state > 1.0:
+        state = 0
+    if runningConfig.fill:
+        pixels.fill(runningConfig.baseColor)
+    index = math.floor(state * num_pixels)
+
+    for i in range(runningConfig.amountRunning):
+        if index + i < num_pixels:
+            pixels[index + i] = runningConfig.runningColor
+
+        print(num_pixels - 1 - i - index)
+        if num_pixels - 1 - i - index >= 0:
+            pixels[num_pixels - 1 - i - index] = runningConfig.runningColor
+
+def breathe(breatheConfig):
+    global breatheState
+    global breatheIncreasing
+
+    if breatheIncreasing:
+        breatheState = breatheState + breatheConfig.increaseStep
+    else:
+        breatheState = breatheState - breatheConfig.increaseStep
+
+    if breatheState > 1.0 and breatheIncreasing:
+        breatheState = 1.0
+        breatheIncreasing = False
+
+    if breatheState < 0.25 and not breatheIncreasing:
+        breatheState = 0.25
+        breatheIncreasing = True
+
+    colorFaded = (math.floor(breatheConfig.color[0] * breatheState), math.floor(breatheConfig.color[1] * breatheState),
+                  math.floor(breatheConfig.color[2] * breatheState))
+    pixels.fill(colorFaded)
+
+
+def breatheWithRunning(breatheConfig, runningConfig):
+    breathe(breatheConfig)
+    runningLeds(runningConfig)
+
+
+def limit(source, minVal, maxVal):
+    if source > maxVal:
+        source = maxVal
+    if source < minVal:
+        source = minVal
+    return source
+
+
+def stringToColor(string):
+    splitMsg = string.split(",")
+    if len(splitMsg) != 3:
+        return 0, 0, 0
+
+    r = int(splitMsg[0])
+    g = int(splitMsg[1])
+    b = int(splitMsg[2])
+
+    r = limit(r, 0, 255)
+    g = limit(g, 0, 255)
+    b = limit(b, 0, 255)
+    return r, g, b
+
+
+NetworkTables.initialize(server="10.46.35.2")
+table = NetworkTables.getTable("EctoLeds")
+
 num_pixels = 30
-pixels = adafruit_dotstar.DotStar(board.SCLK, board.MOSI, num_pixels, brightness= 1.0, auto_write=False)
+pixels = adafruit_dotstar.DotStar(board.SCLK, board.MOSI, num_pixels, brightness=1.0, auto_write=False)
+
 state = 0
 breatheState = 0
 breatheIncreasing = True
 
-def wheel(pos):
-    # Input a value 0 to 255 to get a color value.
-    # The colours are a transition r - g - b - back to r.
-   if pos < 0 or pos > 255:
-        return (0, 0, 0)
-   if pos < 85:
-        return (255 - pos * 3, pos * 3, 0)
-   if pos < 170:
-        pos -= 85
-        return (0, 255 - pos * 3, pos * 3)
-   pos -= 170
-   return (pos * 3, 0, 255 - pos * 3)
-
-
-def color_fill(color, wait):
-    pixels.fill(color)
-    pixels.show()
-    time.sleep(wait)
-
-
-def slice_alternating(wait):
-    pixels[::2] = [RED] * (num_pixels // 2)
-    pixels.show()
-    time.sleep(wait)
-    pixels[1::2] = [ORANGE] * (num_pixels // 2)
-    pixels.show()
-    time.sleep(wait)
-    pixels[::2] = [YELLOW] * (num_pixels // 2)
-    pixels.show()
-    time.sleep(wait)
-    pixels[1::2] = [GREEN] * (num_pixels // 2)
-    pixels.show()
-    time.sleep(wait)
-    pixels[::2] = [TEAL] * (num_pixels // 2)
-    pixels.show()
-    time.sleep(wait)
-    pixels[1::2] = [CYAN] * (num_pixels // 2)
-    pixels.show()
-    time.sleep(wait)
-    pixels[::2] = [BLUE] * (num_pixels // 2)
-    pixels.show()
-    time.sleep(wait)
-    pixels[1::2] = [PURPLE] * (num_pixels // 2)
-    pixels.show()
-    time.sleep(wait)
-    pixels[::2] = [MAGENTA] * (num_pixels // 2)
-    pixels.show()
-    time.sleep(wait)
-    pixels[1::2] = [WHITE] * (num_pixels // 2)
-    pixels.show()
-    time.sleep(wait)
-
-
-def slice_rainbow(wait):
-    pixels[::6] = [RED] * (num_pixels // 6)
-    pixels.show()
-    time.sleep(wait)
-    pixels[1::6] = [ORANGE] * (num_pixels // 6)
-    pixels.show()
-    time.sleep(wait)
-    pixels[2::6] = [YELLOW] * (num_pixels // 6)
-    pixels.show()
-    time.sleep(wait)
-    pixels[3::6] = [GREEN] * (num_pixels // 6)
-    pixels.show()
-    time.sleep(wait)
-    pixels[4::6] = [BLUE] * (num_pixels // 6)
-    pixels.show()
-    time.sleep(wait)
-    pixels[5::6] = [PURPLE] * (num_pixels // 6)
-    pixels.show()
-    time.sleep(wait)
-
-
-def rainbow_cycle(wait):
-    for j in range(255):
-        for i in range(num_pixels):
-            rc_index = (i * 256 // num_pixels) + j
-            pixels[i] = wheel(rc_index & 255)
-        pixels.show()
-        time.sleep(wait)
-
-
-RED = (255, 0, 0)
-YELLOW = (255, 150, 0)
-ORANGE = (255, 40, 0)
-GREEN = (0, 255, 0)
-TEAL = (0, 255, 120)
-CYAN = (0, 255, 255)
-BLUE = (0, 0, 255)
-PURPLE = (180, 0, 255)
-MAGENTA = (255, 0, 20)
-WHITE = (255, 255, 255)
-blink_time = 0.1
-
-
-def  blink_cycle(times,color):
-	for x in range(times):
-		pixels.fill(color)
-		pixels.show()
-		time.sleep(blink_time)
-		pixels.fill((0,0,0))
-		pixels.show()
-		time.sleep(blink_time)
-
-
-
-def  runningLeds(amountRunning, baseColor, runningColor, fill, increase):
-	global state
-	state = state + increase
-	if state > 1.0:
-		state = 0
-	if fill:
-		pixels.fill((255, 255, 255))
-	index = math.floor(state * num_pixels)
-	for i in range(amountRunning):
-		if index + i > num_pixels - 1:
-			break
-		pixels[index + i] = runningColor
-	pixels.show()
-
-def breathe(color, increase):
-	global breatheState
-	global breatheIncreasing
-
-	if breatheIncreasing:
-		breatheState = breatheState + increase
-	else:
-		breatheState = breatheState - increase
-
-	if breatheState > 1.0 and breatheIncreasing:
-		breatheState = 1.0
-		breatheIncreasing = False
-
-	if breatheState < 0.25 and  not breatheIncreasing:
-		breatheState = 0.25
-		breatheIncreasing = True
-
-
-	colorFaded  = (math.floor(color[0] * breatheState), math.floor(color[1] * breatheState), math.floor(color[2] * breatheState))
-	pixels.fill(colorFaded)
-	pixels.show()
-
-def breatheWithRunning(followerAmount, breatheColor, timeBreathe, followColor, timeIncrease):
-	breathe(breatheColor, timeBreathe)
-	runningLeds(followerAmount, breatheColor, followColor, False, timeIncrease)
-
-
-NetworkTables.initialize(server="10.46.35.2")
-
-table = NetworkTables.getTable("EctoLeds")
-
-def stringToColor(string):
-	splitMsg = string.split(",")
-	#print(len(splitMsg))
-	if len(splitMsg) != 3:
-		return (0,0,0)
-
-	r =  int(splitMsg[0])
-	g = int(splitMsg[1])
-	b = int(splitMsg[2])
-	return (r, g, b)
-
 while True:
-#	running_leds(2, (255, 255, 255), (100,100,0))
-#	blink_cycle(5, (255, 255, 255))
-	breatheColorMessage = table.getString("BreatheColor","0,70,0")
-	breatheColor = stringToColor(breatheColorMessage)
+    breatheColorMessage = table.getString("BreatheColor", "0,70,0")
+    breatheColor = stringToColor(breatheColorMessage)
+    breatheColorSpeed = table.getNumber("BreatheColorSpeed", 0.003)
 
-	followerColorMessage = table.getString("FollowerColor", "0,255,0")
-	followerColor = stringToColor(followerColorMessage)
+    followerColorMessage = table.getString("FollowerColor", "0,255,0")
+    followerColor = stringToColor(followerColorMessage)
+    followerSpeed = table.getNumber("FollowerSpeed", 0.006)
+    followerAmount = int(table.getNumber("FollowerAmount", 1))
 
+    breatheConfig = BreatheConfig(breatheColor, breatheColorSpeed)
 
-	breatheColorSpeed = table.getNumber("BreatheColorSpeed", 0.003)
-	followerSpeed = table.getNumber("FollowerSpeed", 0.006)
+    runningConfig = RunningLedsConfig(followerAmount, breatheColor, followerColor, False, breatheColorSpeed)
 
-	followerAmount = int(table.getNumber("FollowerAmount", 1))
-
-	breatheWithRunning(followerAmount, breatheColor, breatheColorSpeed, followerColor, followerSpeed)
-
+    breatheWithRunning(breatheConfig, runningConfig)
+    pixels.show()
