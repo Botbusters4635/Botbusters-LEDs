@@ -103,12 +103,13 @@ breatheIncreasing = True
 while True:
     breatheColorMessage = table.getString("BreatheColor", "0,70,0")
     breatheColor = stringToColor(breatheColorMessage)
-    breatheColorSpeed = table.getNumber("BreatheColorSpeed", 0.003)
+    breatheColorSpeed = limit(table.getNumber("BreatheColorSpeed", 0.003), 0, 1)
 
     followerColorMessage = table.getString("FollowerColor", "0,255,0")
     followerColor = stringToColor(followerColorMessage)
-    followerSpeed = table.getNumber("FollowerSpeed", 0.006)
-    followerAmount = int(table.getNumber("FollowerAmount", 1))
+    followerSpeed = limit(table.getNumber("FollowerSpeed", 0.006), 0, 1)
+
+    followerAmount = limit(int(table.getNumber("FollowerAmount", 1)), 1, num_pixels/3)
 
     breatheConfig = BreatheConfig(breatheColor, breatheColorSpeed)
 
