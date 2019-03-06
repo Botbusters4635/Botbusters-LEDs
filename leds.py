@@ -2,8 +2,6 @@ import time
 import adafruit_dotstar
 import board
 import math
-import numpy as np
-
 from networktables import NetworkTables
 
 
@@ -27,19 +25,18 @@ class BreatheConfig:
 
 
 def runningLeds(runningConfig):
-    global state
-    state = state + runningConfig.increaseStep
-    if state > 1.0:
-        state = 0
+    global runningState
+    runningState = runningState + runningConfig.increaseStep
+    if runningState > 1.0:
+        runningState = 0
     if runningConfig.fill:
         pixels.fill(runningConfig.baseColor)
-    index = math.floor(state * num_pixels)
+    index = math.floor(runningState * num_pixels)
 
     for i in range(runningConfig.amountRunning):
         if index + i < num_pixels:
             pixels[index + i] = runningConfig.runningColor
 
-        print(num_pixels - 1 - i - index)
         if num_pixels - 1 - i - index >= 0:
             pixels[num_pixels - 1 - i - index] = runningConfig.runningColor
 
@@ -99,7 +96,7 @@ table = NetworkTables.getTable("EctoLeds")
 num_pixels = 30
 pixels = adafruit_dotstar.DotStar(board.SCLK, board.MOSI, num_pixels, brightness=1.0, auto_write=False)
 
-state = 0
+runningState = 0
 breatheState = 0
 breatheIncreasing = True
 
