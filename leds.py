@@ -3,9 +3,10 @@ import time
 import adafruit_dotstar
 import board
 import math
+from networktables import NetworkTables
 
 num_pixels = 30
-pixels = adafruit_dotstar.DotStar(board.SCLK, board.MOSI, num_pixels, brightness=0.1, auto_write=False)
+pixels = adafruit_dotstar.DotStar(board.SCLK, board.MOSI, num_pixels, brightness= 1.0, auto_write=False)
 state = 0
 breatheState = 0
 breatheIncreasing = True
@@ -126,7 +127,6 @@ def  runningLeds(amountRunning, baseColor, runningColor, fill, increase):
 		pixels.fill((255, 255, 255))
 	index = math.floor(state * num_pixels)
 	for i in range(amountRunning):
-		print(index + i)
 		if index + i > num_pixels - 1:
 			break
 		pixels[index + i] = runningColor
@@ -144,7 +144,7 @@ def breathe(color, increase):
 	if breatheState > 1.0 and breatheIncreasing:
 		breatheState = 1.0
 		breatheIncreasing = False
-	
+
 	if breatheState < 0.25 and  not breatheIncreasing:
 		breatheState = 0.25
 		breatheIncreasing = True
@@ -154,13 +154,40 @@ def breathe(color, increase):
 	pixels.fill(colorFaded)
 	pixels.show()
 
-def breatheWithRunning(breatheColor, timeBreathe, followColor, timeIncrease):
+def breatheWithRunning(followerAmount, breatheColor, timeBreathe, followColor, timeIncrease):
 	breathe(breatheColor, timeBreathe)
-	runningLeds(1, breatheColor, followColor, False, timeIncrease)
+	runningLeds(followerAmount, breatheColor, followColor, False, timeIncrease)
+
+
+NetworkTables.initialize(server="10.46.35.2")
+
+table = NetworkTables.getTable("EctoLeds")
+
+def stringToColor(string):
+	splitMsg = string.split(",")
+	#print(len(splitMsg))
+	if len(splitMsg) != 3:
+		return (0,0,0)
+
+	r =  int(splitMsg[0])
+	g = int(splitMsg[1])
+	b = int(splitMsg[2])
+	return (r, g, b)
 
 while True:
 #	running_leds(2, (255, 255, 255), (100,100,0))
 #	blink_cycle(5, (255, 255, 255))
-	breatheWithRunning((0, 50, 0), 0.003, (0, 255, 0), 0.006)
-	print(breatheState)	
-	print(breatheIncreasing)
+	breatheColorMessage = table.getString("BreatheColor","0,70,0")
+	breatheColor = stringToColor(breatheColorMessage)
+
+	followerColorMessage = table.getString("FollowerColor", "0,255,0")
+	followerColor = stringToColor(followerColorMessage)
+
+
+	breatheColorSpeed = table.getNumber("BreatheColorSpeed", 0.003)
+	followerSpeed = table.getNumber("FollowerSpeed", 0.006)
+
+	followerAmount = int(table.getNumber("FollowerAmount", 1))
+
+	breatheWithRunning(followerAmount, breatheColor, breatheColorSpeed, followerColor, followerSpeed)
+
