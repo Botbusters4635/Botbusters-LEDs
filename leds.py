@@ -111,7 +111,7 @@ with cond:
         
 table = NetworkTables.getTable("EctoLeds")
 
-num_pixels = 30
+num_pixels = 60
 pixels = adafruit_dotstar.DotStar(board.SCLK, board.MOSI, num_pixels, brightness=1.0, auto_write=False)
 
 runningState = 0
