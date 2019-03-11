@@ -2,6 +2,7 @@ import time
 import adafruit_dotstar
 import board
 import math
+import threading
 from networktables import NetworkTables
 
 
