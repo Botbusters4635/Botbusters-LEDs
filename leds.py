@@ -90,7 +90,24 @@ def stringToColor(string):
     return r, g, b
 
 
+
+cond = threading.Condition()
+notified = [False]
+
+def connectionListener(connected, info):
+    print(info, '; Connected=%s' % connected)
+    with cond:
+        notified[0] = True
+        cond.notify()
+
 NetworkTables.initialize(server="10.46.35.2")
+NetworkTables.addConnectionListener(connectionListener, immediateNotify=True)
+
+with cond:
+    print("Waiting")
+    if not notified[0]:
+        cond.wait()
+        
 table = NetworkTables.getTable("EctoLeds")
 
 num_pixels = 30
@@ -113,7 +130,7 @@ while True:
 
     breatheConfig = BreatheConfig(breatheColor, breatheColorSpeed)
 
-    runningConfig = RunningLedsConfig(followerAmount, breatheColor, followerColor, False, breatheColorSpeed)
+    runningConfig = RunningLedsConfig(followerAmount, breatheColor, followerColor, False, followerSpeed)
 
     breatheWithRunning(breatheConfig, runningConfig)
     pixels.show()
