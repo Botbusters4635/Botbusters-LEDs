@@ -51,7 +51,7 @@ class Breathe(Effect):
         self.fadeColor = fadeColor
         self.breatheHelper = BreatheHelper(breatheRate=breatheRate)
 
-    def apply(self, leds: dotstar.DotStar, respectLedsState:bool):
+    def apply(self, leds: dotstar.DotStar, respectLedsState=False):
         self.breatheHelper.update()
         red = math.floor(self.breatheColor[0] * self.breatheHelper.currentBreathe)
         blue = math.floor(self.breatheColor[1] * self.breatheHelper.currentBreathe)

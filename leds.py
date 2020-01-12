@@ -13,8 +13,8 @@ randomBlinkSecondaryEffect = random_blink.RandomBlink(ledAmount=num_leds, blinkC
 
 while True:
     breatheEffect.apply(dots)
-    randomBlinkEffect.apply(dots)
-    randomBlinkSecondaryEffect.apply(dots)
+    randomBlinkEffect.apply(dots, respectLedsState=True)
+    randomBlinkSecondaryEffect.apply(dots, respectLedsState=True)
     dots.show()
 
     time.sleep(0.01)

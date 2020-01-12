@@ -33,7 +33,7 @@ class RandomBlink(Effect):
     def randomPos(self):
         return random() * self.ledAmount
 
-    def apply(self, leds: dotstar.DotStar, respectLedsState: bool):
+    def apply(self, leds: dotstar.DotStar, respectLedsState=False):
         for blink in reversed(self.blinks):
             blink.breatheHelper.update()
             pos = blink.basePos
