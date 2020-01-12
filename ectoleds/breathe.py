@@ -16,9 +16,7 @@ class BreatheHelper:
         self.breatheRate = breatheRate
         self.currentBreathe = 0.0
         self.previousTime = time.time()
-        if breatheRate > 1.0:
-            self.breatheRate = 1.0
-        elif breatheRate < 0.0:
+        if breatheRate < 0.0:
             self.breatheRate = 0.0
         else:
             self.breatheRate = breatheRate

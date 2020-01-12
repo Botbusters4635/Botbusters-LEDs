@@ -11,10 +11,11 @@ class Blink:
     def __init__(self, basePos: int, breatheHelper: BreatheHelper):
         self.basePos = basePos
         self.breatheHelper = breatheHelper
+        print("Created blink with rate " + str(breatheHelper.breatheRate))
 
 
 class RandomBlink(Effect):
-    def __init__(self, ledAmount, blinkColor, fadeColor=(0, 0, 0), maxBreatheRate=1.0, minBreatheRate=0.1, blinkRange=3,
+    def __init__(self, ledAmount, blinkColor, fadeColor=(0, 0, 0), maxBreatheRate=100, minBreatheRate=50, blinkRange=3,
                  maxParallelBlinks=3):
         self.minBreatheRate = minBreatheRate
         self.ledAmount = ledAmount
@@ -51,8 +52,9 @@ class RandomBlink(Effect):
 
                 leds[pos] = (red, blue, green)
 
-            if blink.breatheHelper.currentBreathe == 0 and blink.breatheHelper.state == BreatheHelperState.Fading:
+            if blink.breatheHelper.currentBreathe <= 0.1 and blink.breatheHelper.state == BreatheHelperState.Fading:
                 self.blinks.remove(blink)
+                print("Removed blink")
 
         while len(self.blinks) < self.maxParallelBlinks:
             self.blinks.append(Blink(basePos=self.randomPos(),
