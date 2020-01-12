@@ -31,13 +31,13 @@ class Breathe(ectoleds.effect_base.Effect):
         breatheChange = self.breatheRate * timeStep
 
         if self.state == BreatheState.Rising:
-            if self.currentBreathe >= 1.0:
+            if self.currentBreathe + breatheChange > 1.0:
                 self.currentBreathe = 1.0
                 self.state = BreatheState.Fading
             else:
                 self.currentBreathe += breatheChange
         elif self.state == BreatheState.Fading:
-            if self.currentBreathe <= 0.0:
+            if self.currentBreathe - breatheChange < 0.0:
                 self.currentBreathe = 0.0
                 self.state = BreatheState.Rising
             else:
