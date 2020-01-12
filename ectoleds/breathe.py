@@ -36,8 +36,10 @@ class BreatheHelper:
         elif self.state == BreatheHelperState.Fading:
             if self.currentBreathe - breatheChange < 0.0:
                 self.currentBreathe = 0.0
+                self.state = BreatheHelperState.Rising
             else:
                 self.currentBreathe -= breatheChange
+
         self.previousTime = time.time()
 
 
