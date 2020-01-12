@@ -14,7 +14,6 @@ class Breathe(ectoleds.effect_base.Effect):
         self.ledAmount = ledAmount
         self.breatheColor = breatheColor
         self.fadeColor = fadeColor
-        self.currentColor = fadeColor
         self.currentBreathe = 0.0
         self.previousTime = time.time()
         self.state = BreatheState.Rising
@@ -40,9 +39,7 @@ class Breathe(ectoleds.effect_base.Effect):
                 self.state = BreatheState.Rising
             else:
                 self.currentBreathe -= breatheChange
-
-        self.currentColor = (self.breatheColor[0] * self.currentBreathe, self.breatheColor[1] * self.currentBreathe,
-                             self.breatheColor[2] * self.currentBreathe)
-        leds.fill(self.currentColor)
+        leds.fill((self.breatheColor[0] * self.currentBreathe, self.breatheColor[1] * self.currentBreathe,
+                   self.breatheColor[2] * self.currentBreathe))
         self.previousTime = time.time()
         pass
