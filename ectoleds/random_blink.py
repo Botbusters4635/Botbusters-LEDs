@@ -34,6 +34,7 @@ class RandomBlink(Effect):
 
     def apply(self, leds: dotstar.DotStar):
         for blink in reversed(self.blinks):
+            blink.breatheHelper.update()
             pos = blink.basePos
             startPos = pos - self.blinkRange / 2
             endPos = pos + self.blinkRange / 2
