@@ -1,5 +1,6 @@
 from ectoleds.effect_base import Effect
 import adafruit_dotstar as dotstar
+from ectoleds.color_utils import isGreaterThan
 import time
 import math
 from enum import Enum
@@ -50,10 +51,17 @@ class Breathe(Effect):
         self.fadeColor = fadeColor
         self.breatheHelper = BreatheHelper(breatheRate=breatheRate)
 
-    def apply(self, leds: dotstar.DotStar):
+    def apply(self, leds: dotstar.DotStar, respectLedsState:bool):
         self.breatheHelper.update()
         red = math.floor(self.breatheColor[0] * self.breatheHelper.currentBreathe)
         blue = math.floor(self.breatheColor[1] * self.breatheHelper.currentBreathe)
         green = math.floor(self.breatheColor[2] * self.breatheHelper.currentBreathe)
 
-        leds.fill((red, blue, green))
+        targetColor = (red, blue, green)
+
+        for pixel in range(self.ledAmount):
+            if respectLedsState:
+                if isGreaterThan(targetColor, leds[pixel]):
+                    leds[pixel] = (red, blue, green)
+            else:
+                leds[pixel] = [red, blue, green]

@@ -1,5 +1,6 @@
 from ectoleds.effect_base import Effect
 from ectoleds.breathe import BreatheHelper, BreatheHelperState
+from ectoleds.color_utils import isGreaterThan
 import adafruit_dotstar as dotstar
 import time
 import math
@@ -32,7 +33,7 @@ class RandomBlink(Effect):
     def randomPos(self):
         return random() * self.ledAmount
 
-    def apply(self, leds: dotstar.DotStar):
+    def apply(self, leds: dotstar.DotStar, respectLedsState: bool):
         for blink in reversed(self.blinks):
             blink.breatheHelper.update()
             pos = blink.basePos
@@ -48,8 +49,13 @@ class RandomBlink(Effect):
                 red = math.floor(self.blinkColor[0] * blink.breatheHelper.currentBreathe)
                 blue = math.floor(self.blinkColor[1] * blink.breatheHelper.currentBreathe)
                 green = math.floor(self.blinkColor[2] * blink.breatheHelper.currentBreathe)
+                targetColor = (red, blue, green)
 
-                leds[pos] = (red, blue, green)
+                if respectLedsState:
+                    if isGreaterThan(targetColor, leds[pos]):
+                        leds[pos] = (red, blue, green)
+                else:
+                    leds[pos] = [red, blue, green]
 
             if blink.breatheHelper.count >= 1:
                 self.blinks.remove(blink)
@@ -58,4 +64,4 @@ class RandomBlink(Effect):
             self.blinks.append(Blink(basePos=self.randomPos(),
                                      breatheHelper=BreatheHelper(
                                          breatheRate=self.minBreatheRate +
-                                     (self.maxBreatheRate - self.minBreatheRate) * random())))
+                                                     (self.maxBreatheRate - self.minBreatheRate) * random())))

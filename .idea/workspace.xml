@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2148d414-6c3a-4fed-97e6-4dff249d4734" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ectoleds/breathe.py" beforeDir="false" afterPath="$PROJECT_DIR$/ectoleds/breathe.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ectoleds/random_blink.py" beforeDir="false" afterPath="$PROJECT_DIR$/ectoleds/random_blink.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ectoleds/effect_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/ectoleds/effect_base.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

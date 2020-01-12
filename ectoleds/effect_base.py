@@ -2,5 +2,5 @@ import adafruit_dotstar as dotstar
 
 
 class Effect:
-    def apply(self, leds: dotstar.DotStar):
+    def apply(self, leds: dotstar.DotStar, respectLedsState: bool):
         pass
