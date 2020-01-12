@@ -12,6 +12,7 @@ randomBlinkEffect = random_blink.RandomBlink(ledAmount=num_leds, blinkColor=(255
 randomBlinkSecondaryEffect = random_blink.RandomBlink(ledAmount=num_leds, blinkColor=(255, 100, 0))
 
 while True:
+    breatheEffect.apply(dots)
     randomBlinkEffect.apply(dots)
     randomBlinkSecondaryEffect.apply(dots)
     dots.show()
