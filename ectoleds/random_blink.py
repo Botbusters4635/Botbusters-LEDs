@@ -36,8 +36,8 @@ class RandomBlink(Effect):
         for blink in reversed(self.blinks):
             blink.breatheHelper.update()
             pos = blink.basePos
-            startPos = pos - self.blinkRange / 2
-            endPos = pos + self.blinkRange / 2
+            startPos = math.floor(pos - self.blinkRange / 2)
+            endPos = math.floor(pos + self.blinkRange / 2)
             if startPos < 0:
                 startPos = 0
 
