@@ -1,6 +1,6 @@
 from ectoleds.effect_base import Effect
 import adafruit_dotstar as dotstar
-from ectoleds.color_utils import isGreaterThan
+from ectoleds.color_utils import mergeColor
 import time
 import math
 from enum import Enum
@@ -61,7 +61,6 @@ class Breathe(Effect):
 
         for pixel in range(self.ledAmount):
             if respectLedsState:
-                if isGreaterThan(targetColor, leds[pixel]):
-                    leds[pixel] = (red, blue, green)
+                leds[pixel] = mergeColor(leds[pixel], targetColor)
             else:
                 leds[pixel] = [red, blue, green]

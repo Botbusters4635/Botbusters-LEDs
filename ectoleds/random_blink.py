@@ -1,6 +1,6 @@
 from ectoleds.effect_base import Effect
 from ectoleds.breathe import BreatheHelper, BreatheHelperState
-from ectoleds.color_utils import isGreaterThan
+from ectoleds.color_utils import mergeColor
 import adafruit_dotstar as dotstar
 import time
 import math
@@ -52,8 +52,7 @@ class RandomBlink(Effect):
                 targetColor = (red, blue, green)
 
                 if respectLedsState:
-                    if isGreaterThan(targetColor, leds[pos]):
-                        leds[pos] = (red, blue, green)
+                    leds[pos] = mergeColor(leds[pos], targetColor)
                 else:
                     leds[pos] = [red, blue, green]
 
