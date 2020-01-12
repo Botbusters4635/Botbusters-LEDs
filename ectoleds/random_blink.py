@@ -52,7 +52,7 @@ class RandomBlink(Effect):
 
                 leds[pos] = (red, blue, green)
 
-            if blink.breatheHelper.currentBreathe <= 0.1 and blink.breatheHelper.state == BreatheHelperState.Fading:
+            if blink.breatheHelper.count >= 1:
                 self.blinks.remove(blink)
                 print("Removed blink")
 

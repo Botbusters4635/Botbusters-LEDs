@@ -16,6 +16,7 @@ class BreatheHelper:
         self.breatheRate = breatheRate
         self.currentBreathe = 0.0
         self.previousTime = time.time()
+        self.count = 0.0
         if breatheRate < 0.0:
             self.breatheRate = 0.0
         else:
@@ -35,6 +36,7 @@ class BreatheHelper:
             if self.currentBreathe - breatheChange < 0.0:
                 self.currentBreathe = 0.0
                 self.state = BreatheHelperState.Rising
+                self.count += 1
             else:
                 self.currentBreathe -= breatheChange
 
