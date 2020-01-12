@@ -12,3 +12,5 @@ while True:
     breatheEffect.apply(dots)
     dots.show()
 
+    time.sleep(0.01)
+
