@@ -1,6 +1,7 @@
 import ectoleds.effect_base
 import adafruit_dotstar as dotstar
 import time
+import math
 from enum import Enum
 
 
@@ -39,7 +40,10 @@ class Breathe(ectoleds.effect_base.Effect):
                 self.state = BreatheState.Rising
             else:
                 self.currentBreathe -= breatheChange
-        leds.fill((self.breatheColor[0] * self.currentBreathe, self.breatheColor[1] * self.currentBreathe,
-                   self.breatheColor[2] * self.currentBreathe))
+        red = math.floor(self.breatheColor[0] * self.currentBreathe)
+        blue = math.floor(self.breatheColor[1] * self.currentBreathe)
+        green = math.floor(self.breatheColor[2] * self.currentBreathe)
+
+        leds.fill((red, blue, green))
         self.previousTime = time.time()
         pass
