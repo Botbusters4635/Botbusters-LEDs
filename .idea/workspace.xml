@@ -2,12 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2148d414-6c3a-4fed-97e6-4dff249d4734" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ectoleds/color_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ectoleds/shooting_dot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ectoleds/breathe.py" beforeDir="false" afterPath="$PROJECT_DIR$/ectoleds/breathe.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ectoleds/effect_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/ectoleds/effect_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ectoleds/random_blink.py" beforeDir="false" afterPath="$PROJECT_DIR$/ectoleds/random_blink.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ectoleds.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ectoleds.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/leds.py" beforeDir="false" afterPath="$PROJECT_DIR$/leds.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/activate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/activate.csh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/activate.fish" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/python" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/python3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/python3.6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib64" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pyvenv.cfg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,14 +22,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="77" />
-    <option name="y" value="47" />
-    <option name="width" value="1279" />
-    <option name="height" value="701" />
   </component>
   <component name="ProjectId" id="1WGpXhaqo7i06YyrzYussXm9NZF" />
   <component name="PropertiesComponent">
@@ -83,7 +91,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
