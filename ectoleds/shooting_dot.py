@@ -14,8 +14,7 @@ class Shooting(Effect):
         self.index = 0
 
     def apply(self, leds: dotstar.DotStar, respectLedsState=False):
-        if time.time()-self.previousTime >= .25:
-            print(self.index)
+        if time.time()-self.previousTime >= .03:
             self.previousTime = time.time()
             leds[self.index] = self.shootingColor
 
