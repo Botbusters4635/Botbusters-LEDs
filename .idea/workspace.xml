@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2148d414-6c3a-4fed-97e6-4dff249d4734" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ectoleds/shooting_dot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ectoleds/shooting_Star_Reverse.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ectoleds.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ectoleds.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ectoleds/shooting_dot.py" beforeDir="false" afterPath="$PROJECT_DIR$/ectoleds/shooting_dot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/leds.py" beforeDir="false" afterPath="$PROJECT_DIR$/leds.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/bin/activate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/bin/activate.csh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/bin/activate.fish" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/bin/python" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/bin/python3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/bin/python3.6" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib64" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pyvenv.cfg" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,25 +24,21 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1WGpXhaqo7i06YyrzYussXm9NZF" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/leds.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="debug" type="PythonConfigurationType" factoryName="Python">
@@ -63,6 +53,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leds.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -98,6 +89,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="289" y="97" key="SettingsEditor" timestamp="1580581625872">
+      <screen x="0" y="25" width="1600" height="875" />
+    </state>
+    <state x="289" y="97" key="SettingsEditor/0.25.1600.875@0.25.1600.875" timestamp="1580581625872" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1580582538008">
+      <screen x="0" y="25" width="1600" height="875" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.25.1600.875@0.25.1600.875" timestamp="1580582538008" />
   </component>
   <component name="masterDetails">
     <states>
