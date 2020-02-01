@@ -1,9 +1,6 @@
 from ectoleds.effect_base import Effect
 import adafruit_dotstar as dotstar
-from ectoleds.color_utils import mergeColor
 import time
-import math
-from enum import Enum
 
 
 class Shooting(Effect):
@@ -14,20 +11,22 @@ class Shooting(Effect):
         self.index = 0
 
     def apply(self, leds: dotstar.DotStar, respectLedsState=False):
+<<<<<<< HEAD
         if time.time()-self.previousTime >= .03:
+=======
+        if time.time() - self.previousTime >= .25:
+            print(self.index)
+>>>>>>> d8da8721f16f8b7d966433f6997f1f0628d93060
             self.previousTime = time.time()
             leds[self.index] = self.shootingColor
 
             if self.index != 0:
-                leds[self.index-1] = 0
+                leds[self.index - 1] = 0
 
             if self.index == 0:
-                leds[self.ledAmount-1] = 0
+                leds[self.ledAmount - 1] = 0
 
-            if self.index >= self.ledAmount-1:
+            if self.index >= self.ledAmount - 1:
                 self.index = 0
             else:
                 self.index = self.index + 1
-
-
-

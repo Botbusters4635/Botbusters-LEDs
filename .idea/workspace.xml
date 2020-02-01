@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2148d414-6c3a-4fed-97e6-4dff249d4734" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -10,6 +11,16 @@
       <change beforePath="$PROJECT_DIR$/ectoleds/shooting_dot.py" beforeDir="false" afterPath="$PROJECT_DIR$/ectoleds/shooting_dot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/leds.py" beforeDir="false" afterPath="$PROJECT_DIR$/leds.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/pyvenv.cfg" beforeDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/ectoleds/shooting_Star_Reverse.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ectoleds.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ectoleds.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ectoleds/shooting_dot.py" beforeDir="false" afterPath="$PROJECT_DIR$/ectoleds/shooting_dot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leds.py" beforeDir="false" afterPath="$PROJECT_DIR$/leds.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pyvenv.cfg" afterDir="false" />
+>>>>>>> d8da8721f16f8b7d966433f6997f1f0628d93060
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,10 +43,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1WGpXhaqo7i06YyrzYussXm9NZF" />
+<<<<<<< HEAD
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
+=======
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+>>>>>>> d8da8721f16f8b7d966433f6997f1f0628d93060
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -112,6 +128,7 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+<<<<<<< HEAD
     <state x="229" y="89" key="SettingsEditor" timestamp="1580341838975">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -121,6 +138,16 @@
     </state>
     <state x="399" y="280" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1580583355750" />
     <state x="399" y="282" key="com.intellij.ide.util.TipDialog/0.23.1440.832@0.23.1440.832" timestamp="1580342467700" />
+=======
+    <state x="289" y="97" key="SettingsEditor" timestamp="1580581625872">
+      <screen x="0" y="25" width="1600" height="875" />
+    </state>
+    <state x="289" y="97" key="SettingsEditor/0.25.1600.875@0.25.1600.875" timestamp="1580581625872" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1580582538008">
+      <screen x="0" y="25" width="1600" height="875" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.25.1600.875@0.25.1600.875" timestamp="1580582538008" />
+>>>>>>> d8da8721f16f8b7d966433f6997f1f0628d93060
   </component>
   <component name="masterDetails">
     <states>
