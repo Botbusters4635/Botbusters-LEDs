@@ -27,3 +27,4 @@ class Shooting(Effect):
                 self.index = 0
             else:
                 self.index = self.index + 1
+    bool

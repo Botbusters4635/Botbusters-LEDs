@@ -5,46 +5,38 @@ from ectoleds import breathe
 from ectoleds import random_blink
 from ectoleds import shooting_dot
 from networktables import NetworkTables
-from ectoleds import shooting_Star_Reverse
 
-NetworkTables.initialize(server="192.168.1.104")
-table = NetworkTables.getTable("Leds")
-
-
-num_leds = 13
-dots = dotstar.DotStar(board.SCK, board.MOSI, num_leds, brightness=0.5, auto_write=False)
-
-breatheEffectB = breathe.Breathe(ledAmount=num_leds, breatheColor=(0, 0, 255))
-breatheEffectR = breathe.Breathe(ledAmount=num_leds, breatheColor=(255, 0, 0))
-breatheEffectG = breathe.Breathe(ledAmount=num_leds, breatheColor=(0, 255, 0))
-breatheEffectY = breathe.Breathe(ledAmount=num_leds, breatheColor=(255, 255, 0))
-breatheEffectW = breathe.Breathe(ledAmount=num_leds, breatheColor=(255, 255, 255))
-randomBlinkEffectR = random_blink.RandomBlink(ledAmount=num_leds, blinkColor=(150, 150, 0), minBreatheRate= 10, maxBreatheRate= 15)
-randomBlinkEffectG = random_blink.RandomBlink(ledAmount=num_leds, blinkColor=(0, 255, 0))
-randomBlinkEffectB = random_blink.RandomBlink(ledAmount=num_leds, blinkColor=(0, 0, 255))
-randomBlinkEffectY = random_blink.RandomBlink(ledAmount=num_leds, blinkColor=(255, 255, 0))
-randomBlinkEffectW = random_blink.RandomBlink(ledAmount=num_leds, blinkColor=(255, 255, 255))
-shooting_Star_ReverseR = shooting_Star_Reverse.ShootingReverse(ledAmount=num_leds, blinkColor=(255, 0, 0))
-shooting_Star_ReverseG = shooting_Star_Reverse.ShootingReverse(ledAmount=num_leds, blinkColor=(0, 255, 0))
-shooting_Star_ReverseB = shooting_Star_Reverse.ShootingReverse(ledAmount=num_leds, blinkColor=(0, 0, 255))
+NetworkTables.initialize(server="10.46.35.2")
+table = NetworkTables.getTable("LedsManager")
 
 
+num_leds = 90
+dots = dotstar.DotStar(board.SCK, board.MOSI, num_leds, brightness=1.0, auto_write=False)
+breatheEffect = breathe.Breathe(ledAmount=num_leds, breatheColor=(0, 255, 0))
+randomBlinkEffect = random_blink.RandomBlink(ledAmount=num_leds, blinkColor=(0, 255, 0), minBreatheRate= 10, maxBreatheRate= 15)
 
 while True:
     targetEffect = table.getNumber("EffectNumber",0)
-    if targetEffect == 0:
-        breatheEffectR.apply(dots)
-        randomBlinkEffectR.apply(dots, respectLedsState=True)
-    elif targetEffect == 1:
-        breatheEffectB.apply(dots)
-        randomBlinkEffectB.apply(dots, respectLedsState=True)
-    elif targetEffect == 2:
-        breatheEffectG.apply(dots)
-        randomBlinkEffectG.apply(dots, respectLedsState=True)
-    elif targetEffect == 3:
-        breatheEffectY.apply(dots)
-        randomBlinkEffectY.apply(dots, respectLedsState=True)
+    rColorBreathe = table.getNumber("Breathe/R", 0)
+    gColorBreathe = table.getNumber("Breathe/G", 255)
+    bColorBreathe = table.getNumber("Breathe/B", 0)
+    rColorRandom = table.getNumber("Blink/R", 0)
+    gColorRandom = table.getNumber("Blink/G", 255)
+    bColorRandom = table.getNumber("Blink/B", 0)
+    breathColor = (rColorBreathe, gColorBreathe, bColorBreathe)
+    blinkColor = (rColorRandom,gColorRandom, bColorRandom)
+    breatheEffect.breatheColor = breathColor
+    randomBlinkEffect.blinkColor = blinkColor
+    breatheEffect.breatheHelper.breatheRate = table.getNumber("BreatheRate", 0.5)
 
+
+    if targetEffect == 0:
+        breatheEffect.apply(dots)
+    elif targetEffect == 1:
+        randomBlinkEffect.apply(dots)
+    elif targetEffect == 2:
+        breatheEffect.apply(dots)
+        randomBlinkEffect.apply(dots, respectLedsState=True)
     else:
         dots.fill = 0
 
