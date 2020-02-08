@@ -13,9 +13,9 @@ class DotstarSegment:
             raise ValueError('Segment length must be greater than zero')
 
     def __check_index(self, key: int):
-        if key < 0:
-            raise IndexError('Tried to access negative index of segment')
-        if key > self.length:
+        if key < self.segment_start:
+            raise IndexError('Tried to access index out of segment')
+        if key > self.length + self.segment_start:
             raise IndexError('Tried to access index out of segment')
 
     def __getitem__(self, key: int) -> Tuple[int, int, int]:
