@@ -5,7 +5,7 @@ class DotstarSegment:
     def __init__(self, full_leds:  dotstar.DotStar, segment_start: int, segment_end: int, inverted: bool = False):
         """Please document your code :D"""
         self.segment_start = segment_start
-        self.segmentEnd = segment_end
+        self.segment_end = segment_end
         self.leds = full_leds
         self.length = segment_end - segment_start
         self.inverted = inverted
@@ -15,7 +15,7 @@ class DotstarSegment:
     def __check_index(self, key: int):
         if key < self.segment_start:
             raise IndexError('Tried to access index out of segment')
-        if key > self.length + self.segment_start:
+        if key > self.segment_end:
             raise IndexError('Tried to access index out of segment')
 
     def __getitem__(self, key: int) -> Tuple[int, int, int]:
