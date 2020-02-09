@@ -29,12 +29,11 @@ class Shooting(Effect):
 
             if self.index == 0:
                 if respectLedsState:
-                    leds[self.index - 1] = mergeColor(leds[self.index - 1], 0)
+                    leds[self.ledAmount - 1] = mergeColor(leds[self.ledAmount - 1], 0)
                 else:
-                    leds[self.index - 1] = 0
+                    leds[self.ledAmount - 1] = 0
 
             if self.index >= self.ledAmount - 1:
                 self.index = 0
             else:
                 self.index = self.index + 1
-    bool

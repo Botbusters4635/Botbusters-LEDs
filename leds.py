@@ -13,9 +13,9 @@ table = NetworkTables.getTable("LedsManager")
 num_leds = 90
 dots = dotstar.DotStar(board.SCK, board.MOSI, num_leds, brightness=1.0, auto_write=False)
 outer_left = dotstar_segment.DotstarSegment(dots, 0, 24)
-inner_left = dotstar_segment.DotstarSegment(dots, 25, 45, True)
-inner_right = dotstar_segment.DotstarSegment(dots, 45, 65)
-outer_right = dotstar_segment.DotstarSegment(dots, 65, 90, True)
+inner_left = dotstar_segment.DotstarSegment(dots, 25, 44, True)
+inner_right = dotstar_segment.DotstarSegment(dots, 45, 64)
+outer_right = dotstar_segment.DotstarSegment(dots, 65, 89, True)
 
 
 breatheEffect = breathe.Breathe(ledAmount=num_leds, breatheColor=(0, 255, 0))

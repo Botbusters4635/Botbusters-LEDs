@@ -3,11 +3,11 @@ from typing import Tuple
 
 class DotstarSegment:
     def __init__(self, full_leds:  dotstar.DotStar, segment_start: int, segment_end: int, inverted: bool = False):
-        """Please document your code :D"""
+        """Dotstar abstraction to split a single led strip into as many as needed"""
         self.segment_start = segment_start
         self.segment_end = segment_end
         self.leds = full_leds
-        self.length = segment_end - segment_start
+        self.length = segment_end - segment_start + 1
         self.inverted = inverted
         if self.length <= 0:
             raise ValueError('Segment length must be greater than zero')
