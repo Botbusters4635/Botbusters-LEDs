@@ -9,7 +9,7 @@ import time
 import math
 
 class FireEffect(Effect):
-    def __init__(self, led_amount: int, palette: List[CRGB], fire_cooling: int = 150, fire_intensity = 100):
+    def __init__(self, led_amount: int, palette: List[CRGB], fire_cooling: int = 120, fire_intensity = 30):
         self.led_amount = led_amount
         self.fire_cooling = fire_cooling
         self.fire_intensity = fire_intensity
@@ -32,7 +32,6 @@ class FireEffect(Effect):
 	    # Step 1.  Cool down every cell a little
         for i in range(self.led_amount):
             newValue = self.heat[i] - random() * ((self.fire_cooling * 10 / self.led_amount) + 2)
-        
             self.heat[i] = newValue if newValue >= 0 else 0
 
         # Step 2.  self.heat from each cell drifts 'up' and diffuses a little
