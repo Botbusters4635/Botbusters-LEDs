@@ -9,9 +9,10 @@ import time
 import math
 
 class FireEffect(Effect):
-    def __init__(self, led_amount: int, palette: List[CRGB], fire_cooling: int = 100):
+    def __init__(self, led_amount: int, palette: List[CRGB], fire_cooling: int = 150, fire_intensity = 100):
         self.led_amount = led_amount
         self.fire_cooling = fire_cooling
+        self.fire_intensity = fire_intensity
         self.palette = palette
         self.heat = [0] * self.led_amount
         seed(time.time())
@@ -39,7 +40,9 @@ class FireEffect(Effect):
             self.heat[i] = (self.heat[i - 1] + self.heat[i - 2] + self.heat[i - 2]) / 3
 
         # Step 3. Mantain bottom lit up
-        for i in range(int(random() * (self.led_amount / 10 - self.led_amount / 15) + self.led_amount / 15)):
+        sparking = random() * (self.fire_intensity / 255) * self.led_amount
+
+        for i in range(math.ceil(sparking)):
             self.heat[i] = 255
 
         # Step 4.  Map from self.heat cells to LED colors

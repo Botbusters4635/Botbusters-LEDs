@@ -41,15 +41,20 @@ firePalleteRed = [
 firePalleteBlue = [
     CRGB(0, 0, 0),
     CRGB(0, 0, 255),  
-    CRGB(0, 255, 255),     
-    CRGB(255, 255, 255)]
+    CRGB(0, 255, 255)]
 
-fireEffectOL = fire.FireEffect(led_amount=outer_left.length, palette=firePalleteRed)
-fireEffectIL = fire.FireEffect(led_amount=inner_left.length, palette=firePalleteBlue)
-fireEffectIR = fire.FireEffect(led_amount=inner_right.length, palette=firePalleteBlue)
-fireEffectOR = fire.FireEffect(led_amount=outer_right.length, palette=firePalleteRed)
+# Green
+firePalleteGreen = [
+    CRGB(0, 0, 0),
+    CRGB(0, 255, 0),  
+    CRGB(150, 255, 0)]
 
-table.putNumber("EffectNumber", 0)
+fireEffectOL = fire.FireEffect(led_amount=outer_left.length, palette=firePalleteGreen)
+fireEffectIL = fire.FireEffect(led_amount=inner_left.length, palette=firePalleteGreen)
+fireEffectIR = fire.FireEffect(led_amount=inner_right.length, palette=firePalleteGreen)
+fireEffectOR = fire.FireEffect(led_amount=outer_right.length, palette=firePalleteGreen)
+
+table.putNumber("EffectNumber", 4)
 table.putNumber("Breathe/R", 0)
 table.putNumber("Breathe/G", 255)
 table.putNumber("Breathe/B", 255)
@@ -57,21 +62,44 @@ table.putNumber("Blink/R", 0)
 table.putNumber("Blink/G", 255)
 table.putNumber("Blink/B", 0)
 table.putNumber("BreatheRate", 0.5)
+table.putNumber("FirePallete", 0)
 
 while True:
-    targetEffect = table.getNumber("EffectNumber", 0)
-    targetEffect = 4
+    targetEffect = table.getNumber("EffectNumber", 4)
     rColorBreathe = table.getNumber("Breathe/R", 0)
     gColorBreathe = table.getNumber("Breathe/G", 255)
     bColorBreathe = table.getNumber("Breathe/B", 0)
     rColorRandom = table.getNumber("Blink/R", 0)
     gColorRandom = table.getNumber("Blink/G", 255)
     bColorRandom = table.getNumber("Blink/B", 0)
+    firePalleteNumber = table.getNumber("FirePallete", 0)
     breathColor = (rColorBreathe, gColorBreathe, bColorBreathe)
     blinkColor = (rColorRandom, gColorRandom, bColorRandom)
     breatheEffect.breatheColor = breathColor
     randomBlinkEffect.blinkColor = blinkColor
     breatheEffect.breatheHelper.breatheRate = table.getNumber("BreatheRate", 0.5)
+
+
+    if firePalleteNumber == 0:
+        fireEffectOL.palette = firePalleteGreen 
+        fireEffectIL.palette = firePalleteGreen 
+        fireEffectIR.palette = firePalleteGreen 
+        fireEffectOR.palette = firePalleteGreen 
+    elif firePalleteNumber == 1:
+        fireEffectOL.palette = firePalleteRed 
+        fireEffectIL.palette = firePalleteRed 
+        fireEffectIR.palette = firePalleteRed 
+        fireEffectOR.palette = firePalleteRed 
+    elif firePalleteNumber == 2:
+        fireEffectOL.palette = firePalleteBlue 
+        fireEffectIL.palette = firePalleteBlue 
+        fireEffectIR.palette = firePalleteBlue 
+        fireEffectOR.palette = firePalleteBlue
+    else:
+        fireEffectOL.palette = firePalleteGreen 
+        fireEffectIL.palette = firePalleteGreen 
+        fireEffectIR.palette = firePalleteGreen 
+        fireEffectOR.palette = firePalleteGreen
 
     if targetEffect == 0:
         breatheEffect.apply(dots)
