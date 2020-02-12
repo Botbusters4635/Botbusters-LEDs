@@ -16,10 +16,10 @@ num_leds = 90
 dots = dotstar.DotStar(board.SCK, board.MOSI, num_leds, brightness=1.0, auto_write=False)
 dots.fill((0,0,0))
 
-outer_left = dotstar_segment.DotstarSegment(dots, 0, 24)
-inner_left = dotstar_segment.DotstarSegment(dots, 25, 44, True)
-inner_right = dotstar_segment.DotstarSegment(dots, 45, 64)
-outer_right = dotstar_segment.DotstarSegment(dots, 65, 89, True)
+outer_left = dotstar_segment.DotstarSegment(dots, 0, 23)
+inner_left = dotstar_segment.DotstarSegment(dots, 24, 43, True)
+inner_right = dotstar_segment.DotstarSegment(dots, 44, 63)
+outer_right = dotstar_segment.DotstarSegment(dots, 64, 88, True)
 
 
 breatheEffect = breathe.Breathe(ledAmount=num_leds, breatheColor=(0, 255, 0))
@@ -78,7 +78,6 @@ while True:
     breatheEffect.breatheColor = breathColor
     randomBlinkEffect.blinkColor = blinkColor
     breatheEffect.breatheHelper.breatheRate = table.getNumber("BreatheRate", 0.5)
-
 
     if firePalleteNumber == 0:
         fireEffectOL.palette = firePalleteGreen 
