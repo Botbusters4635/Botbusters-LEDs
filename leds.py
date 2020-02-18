@@ -156,7 +156,6 @@ while True:
         fireEffectIL.apply(inner_left)
         fireEffectIR.apply(inner_right)
         fireEffectOR.apply(outer_right)
-
     elif targetEffect == 1:
         if firstEffect is not None:
             firstEffect.color = (rColorFirst, gColorFirst, bColorFirst)
@@ -164,7 +163,6 @@ while True:
         if secondEffect is not None:
             secondEffect.color = (rColorSecond, gColorSecond, bColorSecond)
             secondEffect.apply(dots, respectLedsState=respectedState)
-
     elif targetEffect == 5:
         fill_stripe_effect_outer_left.apply(outer_left)
         fill_stripe_effect_inner_left.apply(inner_left)
@@ -189,9 +187,6 @@ while True:
         fill_stripe_effect_inner_left.apply(inner_left)
         fill_stripe_effect_inner_right.apply(inner_right)
         fill_stripe_effect_outer_right.apply(outer_right)
-
-
-
     else:
         dots.fill = 0
 
