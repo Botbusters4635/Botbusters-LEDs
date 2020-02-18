@@ -6,7 +6,7 @@ import adafruit_dotstar as dotstar
 import time
 
 
-class FillStripe(Effect):
+class WalkingDot(Effect):
     prevTime: float
 
     def __init__(self, ledAmount, Background_Color, dotColor):

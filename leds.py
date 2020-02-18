@@ -5,7 +5,7 @@ from ectoleds import breathe
 from ectoleds import random_blink
 from ectoleds import shooting_dot
 from ectoleds import dotstar_segment
-from ectoleds import fill_stripe
+from ectoleds import walking_dot
 from ectoleds import fire
 from ectoleds import mario_star
 from ectoleds import circles
@@ -37,13 +37,13 @@ randomBlinkEffect = random_blink.RandomBlink(ledAmount=num_leds, blinkColor=(0, 
                                              maxBreatheRate=30)
 shootingDotEffect = shooting_dot.Shooting(ledAmount=num_leds, shootingColor=(0, 255, 0))
 
-fill_stripe_effect_outer_left = fill_stripe.FillStripe(ledAmount=outer_left.length, Background_Color=(0, 255, 255),
+walking_dot_effect_outer_left = walking_dot.WalkingDot(ledAmount=outer_left.length, Background_Color=(0, 255, 255),
                                                        dotColor=(255, 30, 0))
-fill_stripe_effect_inner_left = fill_stripe.FillStripe(ledAmount=inner_left.length, Background_Color=(0, 255, 255),
+walking_dot_effect_inner_left = walking_dot.WalkingDot(ledAmount=inner_left.length, Background_Color=(0, 255, 255),
                                                        dotColor=(255, 30, 0))
-fill_stripe_effect_inner_right = fill_stripe.FillStripe(ledAmount=inner_right.length, Background_Color=(0, 255, 255),
+walking_dot_effect_inner_right = walking_dot.WalkingDot(ledAmount=inner_right.length, Background_Color=(0, 255, 255),
                                                         dotColor=(255, 30, 0))
-fill_stripe_effect_outer_right = fill_stripe.FillStripe(ledAmount=outer_right.length, Background_Color=(0, 255, 255),
+walking_dot_effect_outer_right = walking_dot.WalkingDot(ledAmount=outer_right.length, Background_Color=(0, 255, 255),
                                                         dotColor=(255, 30, 0))
 
 shootingDotEffectOuterL = shooting_dot.Shooting(ledAmount=outer_left.length, shootingColor=(255, 0, 0))
@@ -166,29 +166,29 @@ while True:
             secondEffect.apply(dots, respectLedsState=respectedState)
 
     elif targetEffect == 5:
-        fill_stripe_effect_outer_left.apply(outer_left)
-        fill_stripe_effect_inner_left.apply(inner_left)
-        fill_stripe_effect_inner_right.apply(inner_right)
-        fill_stripe_effect_outer_right.apply(outer_right)
+        walking_dot_effect_outer_left.apply(outer_left)
+        walking_dot_effect_inner_left.apply(inner_left)
+        walking_dot_effect_inner_right.apply(inner_right)
+        walking_dot_effect_outer_right.apply(outer_right)
     elif targetEffect == 6:
         mario_star_effect.apply(dots)
     elif targetEffect == 7:
         circle_effect_left.apply(left_circle)
         circle_effect_right.apply(right_circle)
     elif targetEffect == 8:
-        fill_stripe_effect_outer_left.apply(inverse_outer_left)
-        fill_stripe_effect_inner_left.apply(inverse_inner_left)
-        fill_stripe_effect_inner_right.apply(inverse_inner_right)
-        fill_stripe_effect_outer_right.apply(inverse_outer_right)
+        walking_dot_effect_outer_left.apply(inverse_outer_left)
+        walking_dot_effect_inner_left.apply(inverse_inner_left)
+        walking_dot_effect_inner_right.apply(inverse_inner_right)
+        walking_dot_effect_outer_right.apply(inverse_outer_right)
     elif targetEffect == 9:
-        fill_stripe_effect_outer_left.apply(inverse_outer_left)
-        fill_stripe_effect_inner_left.apply(inverse_inner_left)
-        fill_stripe_effect_inner_right.apply(inverse_inner_right)
-        fill_stripe_effect_outer_right.apply(inverse_outer_right)
-        fill_stripe_effect_outer_left.apply(outer_left)
-        fill_stripe_effect_inner_left.apply(inner_left)
-        fill_stripe_effect_inner_right.apply(inner_right)
-        fill_stripe_effect_outer_right.apply(outer_right)
+        walking_dot_effect_outer_left.apply(inverse_outer_left)
+        walking_dot_effect_inner_left.apply(inverse_inner_left)
+        walking_dot_effect_inner_right.apply(inverse_inner_right)
+        walking_dot_effect_outer_right.apply(inverse_outer_right)
+        walking_dot_effect_outer_left.apply(outer_left)
+        walking_dot_effect_inner_left.apply(inner_left)
+        walking_dot_effect_inner_right.apply(inner_right)
+        walking_dot_effect_outer_right.apply(outer_right)
 
 
 
