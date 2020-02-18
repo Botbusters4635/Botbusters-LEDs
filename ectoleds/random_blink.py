@@ -17,9 +17,9 @@ class Blink:
 class RandomBlink(Effect):
     def __init__(self, ledAmount, blinkColor, fadeColor=(0, 0, 0), maxBreatheRate=6, minBreatheRate=2, blinkRange=3,
                  maxParallelBlinks=5):
+        super().__init__(blinkColor)
         self.minBreatheRate = minBreatheRate
         self.ledAmount = ledAmount
-        self.blinkColor = blinkColor
         self.fadeColor = fadeColor
         self.blinkRange = blinkRange
         self.maxParallelBlinks = maxParallelBlinks
@@ -46,9 +46,9 @@ class RandomBlink(Effect):
                 endPos = self.ledAmount
 
             for pos in range(startPos, endPos):
-                red = math.floor(self.blinkColor[0] * blink.breatheHelper.currentBreathe)
-                blue = math.floor(self.blinkColor[1] * blink.breatheHelper.currentBreathe)
-                green = math.floor(self.blinkColor[2] * blink.breatheHelper.currentBreathe)
+                red = math.floor(self.color[0] * blink.breatheHelper.currentBreathe)
+                blue = math.floor(self.color[1] * blink.breatheHelper.currentBreathe)
+                green = math.floor(self.color[2] * blink.breatheHelper.currentBreathe)
                 targetColor = (red, blue, green)
 
                 if respectLedsState:

@@ -6,8 +6,8 @@ import time
 
 class Shooting(Effect):
     def __init__(self, ledAmount, shootingColor):
+        super().__init__(shootingColor)
         self.ledAmount = ledAmount
-        self.shootingColor = shootingColor
         self.previousTime = time.time()
         self.index = 0
 
@@ -17,9 +17,9 @@ class Shooting(Effect):
 
             self.previousTime = time.time()
             if respectLedsState:
-                leds[self.index] = mergeColor(leds[self.index], self.shootingColor)
+                leds[self.index] = mergeColor(leds[self.index], self.color)
             else:
-                leds[self.index] = self.shootingColor
+                leds[self.index] = self.color
 
             if self.index != 0:
                 if respectLedsState:
