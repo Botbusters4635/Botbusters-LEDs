@@ -24,6 +24,11 @@ inner_left = dotstar_segment.DotstarSegment(dots, 24, 43, True)
 inner_right = dotstar_segment.DotstarSegment(dots, 44, 63)
 outer_right = dotstar_segment.DotstarSegment(dots, 64, 88, True)
 
+inverse_outer_left = dotstar_segment.DotstarSegment(dots, 0, 23, True)
+inverse_inner_left = dotstar_segment.DotstarSegment(dots, 24, 43)
+inverse_inner_right = dotstar_segment.DotstarSegment(dots, 44, 63, True)
+inverse_outer_right = dotstar_segment.DotstarSegment(dots, 64, 88)
+
 left_circle = dotstar_segment.DotstarSegment(dots, 0, 43, inverted=False)
 right_circle = dotstar_segment.DotstarSegment(dots, 44, 88, inverted=True)
 
@@ -73,7 +78,7 @@ fireEffectIL = fire.FireEffect(led_amount=inner_left.length, palette=firePallete
 fireEffectIR = fire.FireEffect(led_amount=inner_right.length, palette=firePalleteGreen)
 fireEffectOR = fire.FireEffect(led_amount=outer_right.length, palette=firePalleteGreen)
 
-table.putNumber("EffectNumber", 7)
+table.putNumber("EffectNumber", 9)
 table.putNumber("Breathe/R", 0)
 table.putNumber("Breathe/G", 255)
 table.putNumber("Breathe/B", 255)
@@ -146,8 +151,14 @@ while True:
     elif targetEffect == 7:
         circle_effect_left.apply(left_circle)
         circle_effect_right.apply(right_circle)
+    elif targetEffect == 9:
+        fill_stripe_effect_outer_left.apply(inverse_outer_left)
+        fill_stripe_effect_inner_left.apply(inverse_inner_left)
+        fill_stripe_effect_inner_right.apply(inverse_inner_right)
+        fill_stripe_effect_outer_right.apply(inverse_outer_right)
 
     else:
+
         dots.fill = 0
 
     dots.show()
