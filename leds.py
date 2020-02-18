@@ -151,11 +151,20 @@ while True:
     elif targetEffect == 7:
         circle_effect_left.apply(left_circle)
         circle_effect_right.apply(right_circle)
+    elif targetEffect == 8:
+        fill_stripe_effect_outer_left.apply(inverse_outer_left)
+        fill_stripe_effect_inner_left.apply(inverse_inner_left)
+        fill_stripe_effect_inner_right.apply(inverse_inner_right)
+        fill_stripe_effect_outer_right.apply(inverse_outer_right)
     elif targetEffect == 9:
         fill_stripe_effect_outer_left.apply(inverse_outer_left)
         fill_stripe_effect_inner_left.apply(inverse_inner_left)
         fill_stripe_effect_inner_right.apply(inverse_inner_right)
         fill_stripe_effect_outer_right.apply(inverse_outer_right)
+        fill_stripe_effect_outer_left.apply(outer_left)
+        fill_stripe_effect_inner_left.apply(inner_left)
+        fill_stripe_effect_inner_right.apply(inner_right)
+        fill_stripe_effect_outer_right.apply(outer_right)
 
     else:
 
