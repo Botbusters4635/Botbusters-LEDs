@@ -5,7 +5,7 @@ from ectoleds import breathe
 from ectoleds import random_blink
 from ectoleds import shooting_dot
 from ectoleds import dotstar_segment
-from ectoleds import walking_dot
+#from ectoleds import walking_dot
 from ectoleds import fire
 from ectoleds import mario_star
 from ectoleds import circles
@@ -37,14 +37,14 @@ randomBlinkEffect = random_blink.RandomBlink(ledAmount=num_leds, blinkColor=(0, 
                                              maxBreatheRate=30)
 shootingDotEffect = shooting_dot.Shooting(ledAmount=num_leds, shootingColor=(0, 255, 0))
 
-walking_dot_effect_outer_left = walking_dot.WalkingDot(ledAmount=outer_left.length, Background_Color=(0, 255, 255),
-                                                       dotColor=(255, 30, 0))
-walking_dot_effect_inner_left = walking_dot.WalkingDot(ledAmount=inner_left.length, Background_Color=(0, 255, 255),
-                                                       dotColor=(255, 30, 0))
-walking_dot_effect_inner_right = walking_dot.WalkingDot(ledAmount=inner_right.length, Background_Color=(0, 255, 255),
-                                                        dotColor=(255, 30, 0))
-walking_dot_effect_outer_right = walking_dot.WalkingDot(ledAmount=outer_right.length, Background_Color=(0, 255, 255),
-                                                        dotColor=(255, 30, 0))
+#walking_dot_effect_outer_left = walking_dot.WalkingDot(ledAmount=outer_left.length, Background_Color=(0, 255, 255),
+ #                                                      dotColor=(255, 30, 0))
+#walking_dot_effect_inner_left = walking_dot.WalkingDot(ledAmount=inner_left.length, Background_Color=(0, 255, 255),
+  #                                                     dotColor=(255, 30, 0))
+#walking_dot_effect_inner_right = walking_dot.WalkingDot(ledAmount=inner_right.length, Background_Color=(0, 255, 255),
+ #                                                       dotColor=(255, 30, 0))
+#walking_dot_effect_outer_right = walking_dot.WalkingDot(ledAmount=outer_right.length, Background_Color=(0, 255, 255),
+  #                                                      dotColor=(255, 30, 0))
 
 shootingDotEffectOuterL = shooting_dot.Shooting(ledAmount=outer_left.length, shootingColor=(255, 0, 0))
 shootingDotEffectInnerL = shooting_dot.Shooting(ledAmount=inner_left.length, shootingColor=(255, 0, 0))
@@ -162,7 +162,7 @@ while True:
             firstEffect.apply(dots)
         if secondEffect is not None:
             secondEffect.color = (rColorSecond, gColorSecond, bColorSecond)
-            secondEffect.apply(dots, respectLedsState=respectedState)
+            secondEffect.apply(dots, respectLedsState=True)
     elif targetEffect == 5:
         walking_dot_effect_outer_left.apply(outer_left)
         walking_dot_effect_inner_left.apply(inner_left)
