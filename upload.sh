@@ -1,0 +1,1 @@
+scp -r * botbusters@10.46.35.12:~/ectoleds/
